@@ -47,13 +47,10 @@ done
 #checking flags
 if [ $iface ]
 then
-	echo "there is iface"
-	if [ $essid ] && [ $pass ] || [ $conf ]
+	if [ $essid ] && [ $pass ] || [ $confile ]
 	then
-	echo "[ $essid ] && [ $pass ] || [ $conf ]" 
-		if [ $essid ] && [ $pass ] && [ $conf ]
+		if [ $essid ] && [ $pass ] && [ $confile ]
 		then
-		echo "[ $essid ] && [ $pass ] && [ $conf ]"
 			sudo ifconfig $iface up
 			sudo wpa_passphrase $essid $pass > $confile
 			sudo wpa_supplicant -c $confile -i $iface -B
@@ -75,6 +72,8 @@ then
 				exit 0
 			fi
 		fi
+	else
+		echo "specify at least -c | -e -p"
 	fi
 else
 	echo "please specify an interface"
