@@ -1,0 +1,17 @@
+function proxyon(){
+        read -p "usuario: " u
+        read -s -p  "contraseña: " p
+        export {http,HTTP}_{PROXY,proxy}=http://$u:$p@proxyapp.unal.edu.co:8080
+        export {https,HTTPS}_{proxy,PROXY}=http://$u:$p@proxyapp.unal.edu.co:8080
+        git config --global http.proxy http://$u:$p@proxyapp.unal.edu.co:8080
+        git config --global https.proxy http://$u:$p@proxyapp.unal.edu.co:8080
+        unset u p
+}
+function proxyoff(){
+        export {http,HTTP}_{PROXY,proxy}=""
+        export {http,HTTP}_{proxy,PROXY}=""
+        git config --global --unset http.proxy
+        git config --global --unset https.proxy
+
+}
+
