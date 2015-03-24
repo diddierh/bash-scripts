@@ -15,11 +15,11 @@ fi
 
 if [ -z "$1" ]; then
 
-	if [ -a /etc/bash.bashrc ]; then #debian like distro
+	if [ -a /etc/bash.bashrc ]; then #{debian,suse} like distro
 		cat proxy-unal.src >> /etc/bash.bashrc;
 		success;
-	elif [ -a /etc/bashrc ]; then #red-hat like distro except fedora
-		cat proxy-unal.src >> /etc/bash.bashrc;
+	elif [ -a /etc/bashrc ]; then #red-hat like distro
+		cat proxy-unal.src >> /etc/bashrc;
 		success;
 	else
 		echo "por favor invoque el script pasando como primer parametro el nombre del archivo bashrc del sistema";
